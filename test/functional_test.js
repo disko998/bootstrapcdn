@@ -2,9 +2,6 @@
 
 const ENV = process.env;
 
-// We use BCDN_HEADERS to distinguish between production and debug CDN headers
-ENV.BCDN_HEADERS = ENV.BCDN_HEADERS || 'production';
-
 const assert = require('assert').strict;
 const path = require('path');
 const semver = require('semver');
@@ -26,16 +23,8 @@ const expectedHeaders = {
     'last-modified': '',
     'timing-allow-origin': '*',
     'vary': 'Accept-Encoding',
-    'x-hello-human': undefined,
-    'x-hw': undefined
+    'x-hello-human': undefined
 };
-
-if (ENV.BCDN_HEADERS === 'debug') {
-    expectedHeaders.debug = 'Enabled';
-    // x-cache isn't present when the 'Debug' header is set to 'Enabled'
-    expectedHeaders['x-cache'] = undefined;
-    expectedHeaders['x-hw'] = '';
-}
 
 let compressedExtensions;
 
@@ -173,7 +162,7 @@ describe('functional', () => {
             });
 
             afterEach(function() {
-                if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                if (this.currentTest.state === 'failed') {
                     const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                     console.error(errStr);
@@ -196,7 +185,7 @@ describe('functional', () => {
                 });
 
                 afterEach(function() {
-                    if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                    if (this.currentTest.state === 'failed') {
                         const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                         console.error(errStr);
@@ -219,7 +208,7 @@ describe('functional', () => {
             });
 
             afterEach(function() {
-                if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                if (this.currentTest.state === 'failed') {
                     const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                     console.error(errStr);
@@ -246,7 +235,7 @@ describe('functional', () => {
                 });
 
                 afterEach(function() {
-                    if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                    if (this.currentTest.state === 'failed') {
                         const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                         console.error(errStr);
@@ -274,7 +263,7 @@ describe('functional', () => {
                 });
 
                 afterEach(function() {
-                    if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                    if (this.currentTest.state === 'failed') {
                         const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                         console.error(errStr);
@@ -300,7 +289,7 @@ describe('functional', () => {
                 });
 
                 afterEach(function() {
-                    if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                    if (this.currentTest.state === 'failed') {
                         const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                         console.error(errStr);
@@ -326,7 +315,7 @@ describe('functional', () => {
                 });
 
                 afterEach(function() {
-                    if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                    if (this.currentTest.state === 'failed') {
                         const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                         console.error(errStr);
@@ -380,7 +369,7 @@ describe('functional', () => {
                 });
 
                 afterEach(function() {
-                    if (this.currentTest.state === 'failed' && ENV.BCDN_HEADERS === 'debug') {
+                    if (this.currentTest.state === 'failed') {
                         const errStr = `\n${uri}\nX-HW: ${responses[uri].headers['x-hw']}`;
 
                         console.error(errStr);
