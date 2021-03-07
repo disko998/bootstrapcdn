@@ -18,20 +18,14 @@ const responses = {};
 
 // Expects header names to be lowercase in this object.
 const expectedHeaders = {
-    'accept-ranges': 'bytes',
     'access-control-allow-origin': '*',
-    'cache-control': 'public, max-age=31536000',
-    'connection': 'Keep-Alive',
-    'content-length': '',
+    'cache-control': 'public, max-age=31919000',
     'cross-origin-resource-policy': 'cross-origin',
     'date': '',
     'debug': undefined,
-    'etag': '',
     'last-modified': '',
     'timing-allow-origin': '*',
     'vary': 'Accept-Encoding',
-    'x-cache': '',
-    'x-content-type-options': 'nosniff',
     'x-hello-human': undefined,
     'x-hw': undefined
 };
@@ -61,7 +55,7 @@ if (ENV.BCDN_GZIP_TESTS) {
 
 const CONTENT_TYPE_MAP = {
     css: 'text/css; charset=utf-8',
-    js: 'text/javascript; charset=utf-8',
+    js: 'application/javascript; charset=utf-8',
 
     map: 'application/json; charset=utf-8',
 
